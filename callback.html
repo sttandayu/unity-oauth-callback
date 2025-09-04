@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Unity OAuth Callback</title>
+  <title>Unity OAuth Callback Test</title>
 </head>
 <body>
+  <h2>Unity OAuth Callback Test</h2>
+  <p>Click the link below to test if your Unity game opens:</p>
   <script>
-  const params = new URLSearchParams(window.location.search);
-  const accessToken = params.get('access_token');
-  const refreshToken = params.get('refresh_token');
-  const identification = params.get('identification');
+    const params = new URLSearchParams(window.location.search);
+    const accessToken = params.get('access_token') || "TEST_TOKEN";
+    const refreshToken = params.get('refresh_token') || "TEST_REFRESH";
+    const identification = params.get('identification') || "TEST_ID";
 
-  if (accessToken && identification) {
-    window.location.href = `myunityapp://callback?access_token=${accessToken}&refresh_token=${refreshToken}&identification=${identification}`;
-  } else {
-    window.location.href = `myunityapp://callback`;
-    document.body.innerText = "No token found!";
-  }
-</script>
+    const unityLink = `myunityapp://callback?access_token=${accessToken}&refresh_token=${refreshToken}&identification=${identification}`;
 
+    // Add a clickable link
+    const link = document.createElement("a");
+    link.href = unityLink;
+    link.innerText = "Open Unity Game";
+    link.style.fontSize = "18px";
+    link.style.display = "block";
+    link.style.marginTop = "20px";
+    document.body.appendChild(link);
+
+    // Optional: auto-redirect after 2 seconds
+    setTimeout(() => {
+      window.location.href = unityLink;
+    }, 2000);
+  </script>
 </body>
 </html>
