@@ -13,6 +13,7 @@
   if (accessToken && identification) {
     window.location.href = `myunityapp://callback?access_token=${accessToken}&refresh_token=${refreshToken}&identification=${identification}`;
   } else {
+    window.location.href = `myunityapp://callback`;
     document.body.innerText = "No token found!";
   }
 </script>
