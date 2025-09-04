@@ -5,18 +5,17 @@
 </head>
 <body>
   <script>
-    // Extract query params from URL
-    const params = new URLSearchParams(window.location.search);
-    const accessToken = params.get('access_token');
-    const refreshToken = params.get('refresh_token');
-    const identification = params.get('identification');
+  const params = new URLSearchParams(window.location.search);
+  const accessToken = params.get('access_token');
+  const refreshToken = params.get('refresh_token');
+  const identification = params.get('identification');
 
-    if (accessToken && identification) {
-      // Redirect to Unity standalone via custom URL scheme
-      window.location.href = `myunityapp://callback?access_token=${accessToken}&refresh_token=${refreshToken}&identification=${identification}`;
-    } else {
-      document.body.innerText = "No token found!";
-    }
-  </script>
+  if (accessToken && identification) {
+    window.location.href = `myunityapp://callback?access_token=${accessToken}&refresh_token=${refreshToken}&identification=${identification}`;
+  } else {
+    document.body.innerText = "No token found!";
+  }
+</script>
+
 </body>
 </html>
