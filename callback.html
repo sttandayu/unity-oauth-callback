@@ -7,12 +7,13 @@
   <script>
     // Extract query params from URL
     const params = new URLSearchParams(window.location.search);
-    const token = params.get('access_token');
-    const refresh = params.get('refresh_token');
+    const accessToken = params.get('access_token');
+    const refreshToken = params.get('refresh_token');
+    const identification = params.get('identification');
 
-    // Redirect to Unity deep link
-    if (token && refresh) {
-      window.location.href = `myunityapp://callback?access_token=${token}&refresh_token=${refresh}`;
+    if (accessToken && identification) {
+      // Redirect to Unity standalone via custom URL scheme
+      window.location.href = `myunityapp://callback?access_token=${accessToken}&refresh_token=${refreshToken}&identification=${identification}`;
     } else {
       document.body.innerText = "No token found!";
     }
